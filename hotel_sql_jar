@@ -24,7 +24,7 @@ object Hotel {
         val formatter1 = new SimpleDateFormat("yyyy-HH-dd")  //date_format
         val formatter2 = new SimpleDateFormat("yyyyHHdd")   //search_format
         val day = formatter1.format(formatter2.parse(words(5)))  
-        (id,name,day,time,h_name,city,score) //return dataset
+        (id,name,day,time,h_name,city,score) //return your dataset
       }
     )
     frame.createTempView("your_views")
