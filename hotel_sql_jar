@@ -1,0 +1,36 @@
+package sql
+
+import org.apache.spark.SparkConf
+import org.apache.spark.sql.SparkSession
+
+import java.text.SimpleDateFormat
+
+object Hotel {
+  def main(args: Array[String]): Unit = {
+    val sparkConf = new SparkConf().setMaster("local[*]").setAppName("sql")
+    val session = SparkSession.builder().config(sparkConf).getOrCreate()
+    val initRdd = session.sparkContext.textFile(your_dataset_path:str)
+    import session.implicits._ 
+
+    //make rdd format
+    val hotelRDD = rdd.map(
+      words => {   //tup_index
+        val id = words(0)   //id
+        val name = words(1)  //name
+        val time = words(18)  //time
+        val h_name = words(19) //hotel_name
+        val score = words(20)// score
+        val city = words(22)  //city
+        val formatter1 = new SimpleDateFormat("yyyy-HH-dd")  //date_format
+        val formatter2 = new SimpleDateFormat("yyyyHHdd")   //search_format
+        val day = formatter1.format(formatter2.parse(words(5)))  
+        (id,name,day,time,h_name,city,score) //return dataset
+      }
+    )
+    frame.createTempView("your_views")
+    //your sqlSession
+    ...
+    ...
+    session.stop()
+  }
+}
